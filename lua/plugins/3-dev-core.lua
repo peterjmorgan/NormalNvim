@@ -417,15 +417,15 @@ return {
         { path = "lazydev.nvim", mods = { "" } },
         { path = "garbage-day.nvim", mods = { "garbage-day" } },
         { path = "nvim-cmp", mods = { "cmp" } },
-        { path = "cmp_luasnip", mods = { "cmp_luasnip" } },
+        --{ path = "cmp_luasnip", mods = { "cmp_luasnip" } },
         { path = "cmp-buffer", mods = { "cmp_buffer" } },
         { path = "cmp-path", mods = { "cmp_path" } },
         { path = "cmp-nvim-lsp", mods = { "cmp_nvim_lsp" } },
 
-        { path = "LuaSnip", mods = { "luasnip" } },
+        --{ path = "LuaSnip", mods = { "luasnip" } },
         { path = "friendly-snippets", mods = { "snippets" } }, -- has vimscript
         { path = "NormalSnippets", mods = { "snippets" } }, -- has vimscript
-        { path = "telescope-luasnip.nvim", mods = { "telescop" } },
+        --{ path = "telescope-luasnip.nvim", mods = { "telescop" } },
         { path = "gitsigns.nvim", mods = { "gitsigns" } },
         { path = "vim-fugitive", mods = { "fugitive" } }, -- has vimscript
         { path = "aerial.nvim", mods = { "aerial", "telescope", "lualine", "resession" } },
@@ -480,7 +480,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
-      { "saadparwaiz1/cmp_luasnip"},
+      --{ "saadparwaiz1/cmp_luasnip"},
       { "zbirenbaum/copilot-cmp", opts = {} } ,
       { "hrsh7th/cmp-buffer"} ,
       { "hrsh7th/cmp-path" },
@@ -490,7 +490,7 @@ return {
     opts = function()
       -- ensure dependencies exist
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
+      --local luasnip = require("luasnip")
       local lspkind_loaded, lspkind = pcall(require, "lspkind")
 
       -- border opts
@@ -526,12 +526,12 @@ return {
           format = (lspkind_loaded and lspkind.cmp_format(utils.get_plugin_opts("lspkind.nvim"))) or nil
         },
         snippet = {
-          expand = function(args) luasnip.lsp_expand(args.body) end,
+          --expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         duplicates = {
           nvim_lsp = 1,
           lazydev = 1,
-          luasnip = 1,
+          --luasnip = 1,
           cmp_tabnine = 1,
           buffer = 1,
           path = 1,
@@ -599,8 +599,8 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            --elseif luasnip.expand_or_jumpable() then
+              --luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -621,7 +621,7 @@ return {
           -- Note: Priority decides the order items appear.
           { name = "nvim_lsp", priority = 1000 },
           { name = "lazydev",  priority = 850 },
-          { name = "luasnip",  priority = 750 },
+          --{ name = "luasnip",  priority = 750 },
           { name = "copilot",  priority = 600 },
           { name = "buffer",   priority = 500 },
           { name = "path",     priority = 250 },

@@ -45,42 +45,6 @@ return {
   --  Vim Snippets engine  [snippet engine] + [snippet templates]
   --  https://github.com/L3MON4D3/LuaSnip
   --  https://github.com/rafamadriz/friendly-snippets
-  {
-    "L3MON4D3/LuaSnip",
-    build = not is_windows and "make install_jsregexp" or nil,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      "zeioth/NormalSnippets",
-      "benfowler/telescope-luasnip.nvim",
-    },
-    event = "User BaseFile",
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-      region_check_events = "CursorMoved",
-    },
-    config = function(_, opts)
-      if opts then require("luasnip").config.setup(opts) end
-      vim.tbl_map(
-        function(type) require("luasnip.loaders.from_" .. type).lazy_load() end,
-        { "vscode", "snipmate", "lua" }
-      )
-      -- friendly-snippets - enable standardized comments snippets
-      require("luasnip").filetype_extend("typescript", { "tsdoc" })
-      require("luasnip").filetype_extend("javascript", { "jsdoc" })
-      require("luasnip").filetype_extend("lua", { "luadoc" })
-      require("luasnip").filetype_extend("python", { "pydoc" })
-      require("luasnip").filetype_extend("rust", { "rustdoc" })
-      require("luasnip").filetype_extend("cs", { "csharpdoc" })
-      require("luasnip").filetype_extend("java", { "javadoc" })
-      require("luasnip").filetype_extend("c", { "cdoc" })
-      require("luasnip").filetype_extend("cpp", { "cppdoc" })
-      require("luasnip").filetype_extend("php", { "phpdoc" })
-      require("luasnip").filetype_extend("kotlin", { "kdoc" })
-      require("luasnip").filetype_extend("ruby", { "rdoc" })
-      require("luasnip").filetype_extend("sh", { "shelldoc" })
-    end,
-  },
 
   --  GIT ---------------------------------------------------------------------
   --  Git signs [git hunks]
@@ -575,6 +539,20 @@ return {
           request = "launch",
           mode = "test",
           program = "./${relativeFileDirname}"
+        },
+        {
+          type = "delve",
+          name = "Launch livetestaxs",
+          request = "launch",
+          program = "${workspaceFolder}/cmd/live-test-axs",
+          args = {
+               "-url", "https://www.axs.com/uk/events/1180699/puscifer-tickets?skin=thepinnacle&eventId=1180699&slug=puscifer-tickets",
+              "-proxy", "http://192.168.2.51:8081",
+              "-account", "12",
+              "-quantity", "2",
+              "-debug",
+          },
+          cwd = "${workspaceFolder}",
         },
       }
 

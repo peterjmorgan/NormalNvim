@@ -98,6 +98,7 @@ maps.n["<Leader>/"] = { "gcc", remap = true, desc = "Toggle comment line" }
 maps.x["<Leader>/"] = { "gc", remap = true, desc = "Toggle comment" }
 maps.n["gx"] =
 { utils.open_with_program, desc = "Open the file under cursor with a program" }
+maps.n["<leader>?"] = { "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" }
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
 maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }

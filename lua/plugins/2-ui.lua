@@ -514,7 +514,7 @@ return {
       if utils.is_available("telescope-fzf-native.nvim") then telescope.load_extension("fzf") end
       if utils.is_available("telescope-undo.nvim") then telescope.load_extension("undo") end
       if utils.is_available("project.nvim") then telescope.load_extension("projects") end
-      if utils.is_available("LuaSnip") then telescope.load_extension("luasnip") end
+      --if utils.is_available("LuaSnip") then telescope.load_extension("luasnip") end
       if utils.is_available("aerial.nvim") then telescope.load_extension("aerial") end
       if utils.is_available("nvim-neoclip.lua") then
         telescope.load_extension("neoclip")
@@ -734,6 +734,26 @@ return {
     config = function(_, opts)
       require("which-key").setup(opts)
       require("base.utils").which_key_register()
+    end,
+  },
+
+  --  cheatsheet.nvim [keybinding cheat codes]
+  --  https://github.com/sudormrfbin/cheatsheet.nvim
+  {
+    "sudormrfbin/cheatsheet.nvim",
+    cmd = { "Cheatsheet", "CheatsheetEdit" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      bundled_cheatsheets = true,
+      bundled_plugin_cheatsheets = true,
+      include_only_installed_plugins = true,
+    },
+    config = function(_, opts)
+      require("cheatsheet").setup(opts)
     end,
   },
 
